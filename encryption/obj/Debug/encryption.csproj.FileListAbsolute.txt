@@ -1,0 +1,15 @@
+D:\dotnet\workspace\encryption\encryption\obj\Debug\encryption.csprojResolveAssemblyReference.cache
+D:\dotnet\workspace\encryption\encryption\obj\Debug\MainWindow.g.cs
+D:\dotnet\workspace\encryption\encryption\obj\Debug\App.g.cs
+D:\dotnet\workspace\encryption\encryption\obj\Debug\encryption_MarkupCompile.cache
+D:\dotnet\workspace\encryption\encryption\obj\Debug\encryption_MarkupCompile.lref
+D:\dotnet\workspace\encryption\encryption\bin\Debug\encryption.exe.config
+D:\dotnet\workspace\encryption\encryption\bin\Debug\encryption.exe
+D:\dotnet\workspace\encryption\encryption\bin\Debug\encryption.pdb
+D:\dotnet\workspace\encryption\encryption\obj\Debug\MainWindow.baml
+D:\dotnet\workspace\encryption\encryption\obj\Debug\encryption.g.resources
+D:\dotnet\workspace\encryption\encryption\obj\Debug\encryption.Properties.Resources.resources
+D:\dotnet\workspace\encryption\encryption\obj\Debug\encryption.csproj.GenerateResource.Cache
+D:\dotnet\workspace\encryption\encryption\obj\Debug\encryption.csproj.CoreCompileInputs.cache
+D:\dotnet\workspace\encryption\encryption\obj\Debug\encryption.exe
+D:\dotnet\workspace\encryption\encryption\obj\Debug\encryption.pdb
