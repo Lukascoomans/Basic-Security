@@ -75,11 +75,6 @@ namespace encryption
         {
             this._contentLoaded = true;
         }
-
-        internal System.Windows.Controls.TabControl tabControl;
-        internal System.Windows.Controls.TextBlock textBlock1;
-        internal System.Windows.Controls.TextBlock textBlock;
-        internal System.Windows.Controls.ListView listView;
     }
 }
 

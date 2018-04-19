@@ -5,34 +5,4 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:encryption"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
-    <Grid>
-        <Grid HorizontalAlignment="Left" Height="45" VerticalAlignment="Top" Width="520" Background="#FF4860A6">
-            <Ellipse Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="45" Stroke="Black" VerticalAlignment="Top" Width="100"/>
-        </Grid>
-        <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="278" Margin="116,45,0,-0.2" VerticalAlignment="Top" Width="404">
-            <TabControl x:Name="tabControl">
-                <TabItem Header="TabItem" Height="22" VerticalAlignment="Bottom">
-                    <Grid Background="#FFE5E5E5">
-                        <Grid Background="#FF4A648E" Margin="0,0,0,-2">
-                            <TextBlock x:Name="textBlock1" HorizontalAlignment="Left" Margin="10,208,0,0" TextWrapping="Wrap" Text="Textveld" VerticalAlignment="Top" Height="30" Width="376" Background="#FF979CB7"/>
-                        </Grid>
-                    </Grid>
-                </TabItem>
-                <TabItem Header="TabItem">
-                    <Grid Background="#FF4A648E">
-                        <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Margin="10,208,0,0" TextWrapping="Wrap" Text="Textveld" VerticalAlignment="Top" Height="30" Width="376" Background="#FF979CB7"/>
-                    </Grid>
-                </TabItem>
-            </TabControl>
-        </Border>
-        <ListView x:Name="listView" HorizontalAlignment="Left" Height="278" Margin="0,45,0,-0.2" VerticalAlignment="Top" Width="116">
-            <ListView.View>
-                <GridView>
-                    <GridViewColumn/>
-                </GridView>
-            </ListView.View>
-        </ListView>
-
-    </Grid>
-</Window>
+        Title="MainWindow" Height="350" Width="525"/>
