@@ -13,3 +13,18 @@ D:\dotnet\workspace\encryption\encryption\obj\Debug\encryption.csproj.GenerateRe
 D:\dotnet\workspace\encryption\encryption\obj\Debug\encryption.csproj.CoreCompileInputs.cache
 D:\dotnet\workspace\encryption\encryption\obj\Debug\encryption.exe
 D:\dotnet\workspace\encryption\encryption\obj\Debug\encryption.pdb
+E:\School\2eBach\Blok2\Basic Security\project\AppDev\Basic-Security\encryption\bin\Debug\encryption.exe.config
+E:\School\2eBach\Blok2\Basic Security\project\AppDev\Basic-Security\encryption\bin\Debug\encryption.exe
+E:\School\2eBach\Blok2\Basic Security\project\AppDev\Basic-Security\encryption\bin\Debug\encryption.pdb
+E:\School\2eBach\Blok2\Basic Security\project\AppDev\Basic-Security\encryption\obj\Debug\encryption.csprojResolveAssemblyReference.cache
+E:\School\2eBach\Blok2\Basic Security\project\AppDev\Basic-Security\encryption\obj\Debug\MainWindow.g.cs
+E:\School\2eBach\Blok2\Basic Security\project\AppDev\Basic-Security\encryption\obj\Debug\App.g.cs
+E:\School\2eBach\Blok2\Basic Security\project\AppDev\Basic-Security\encryption\obj\Debug\encryption_MarkupCompile.cache
+E:\School\2eBach\Blok2\Basic Security\project\AppDev\Basic-Security\encryption\obj\Debug\encryption_MarkupCompile.lref
+E:\School\2eBach\Blok2\Basic Security\project\AppDev\Basic-Security\encryption\obj\Debug\MainWindow.baml
+E:\School\2eBach\Blok2\Basic Security\project\AppDev\Basic-Security\encryption\obj\Debug\encryption.g.resources
+E:\School\2eBach\Blok2\Basic Security\project\AppDev\Basic-Security\encryption\obj\Debug\encryption.Properties.Resources.resources
+E:\School\2eBach\Blok2\Basic Security\project\AppDev\Basic-Security\encryption\obj\Debug\encryption.csproj.GenerateResource.Cache
+E:\School\2eBach\Blok2\Basic Security\project\AppDev\Basic-Security\encryption\obj\Debug\encryption.csproj.CoreCompileInputs.cache
+E:\School\2eBach\Blok2\Basic Security\project\AppDev\Basic-Security\encryption\obj\Debug\encryption.exe
+E:\School\2eBach\Blok2\Basic Security\project\AppDev\Basic-Security\encryption\obj\Debug\encryption.pdb
