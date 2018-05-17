@@ -101,7 +101,8 @@ C:\Users\11600838\Documents\GitHub\Security\Encryption.web\bin\Microsoft.AI.Depe
 C:\Users\11600838\Documents\GitHub\Security\Encryption.web\bin\Microsoft.AI.ServerTelemetryChannel.xml
 C:\Users\11600838\Documents\GitHub\Security\Encryption.web\bin\Microsoft.AI.WindowsServer.xml
 C:\Users\11600838\Documents\GitHub\Security\Encryption.web\bin\Microsoft.AI.Web.xml
-C:\Users\11600838\Documents\GitHub\Security\Encryption.web\obj\Debug\Encryption.web.csprojResolveAssemblyReference.cache
 C:\Users\11600838\Documents\GitHub\Security\Encryption.web\obj\Debug\Encryption.web.csproj.CoreCompileInputs.cache
 C:\Users\11600838\Documents\GitHub\Security\Encryption.web\obj\Debug\Encryption.web.dll
 C:\Users\11600838\Documents\GitHub\Security\Encryption.web\obj\Debug\Encryption.web.pdb
+C:\Users\11600838\Documents\GitHub\Security\Encryption.web\obj\Debug\Encryption.web.csprojAssemblyReference.cache
+C:\Users\11600838\Documents\GitHub\Security\Encryption.web\obj\Debug\Encryption.web.csproj.CopyComplete
