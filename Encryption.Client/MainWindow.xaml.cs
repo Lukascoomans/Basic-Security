@@ -29,7 +29,7 @@ namespace Encryption.Client
 
         private void ConnectButton_Click(object sender, RoutedEventArgs e)
         {
-            var connection = new HubConnection("http://localhost:57966/");
+            var connection = new HubConnection("http://localhost:24127/");
             chat = connection.CreateHubProxy("chat");
 
             chat.On("newMessage", msg => { this.Dispatcher.Invoke(() => { MessagesBox.Items.Add(msg); }); });
