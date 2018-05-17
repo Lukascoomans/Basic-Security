@@ -3,10 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27130.2036
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "encryption", "encryption\encryption.csproj", "{419368C0-4ED2-4D66-8799-2A871AED0C7F}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Encryption.web", "Encryption.web\Encryption.web.csproj", "{C6B58F00-7E4F-41C0-952E-CACE38E5FB4D}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Encryption.Client", "Encryption.Client\Encryption.Client.csproj", "{AE8ED347-A1DE-4BA8-9F16-70619E7DE668}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Encryption.Server", "Encryption.Server\Encryption.Server.csproj", "{772094CA-CBA0-4AE2-808C-41773C2854C0}"
@@ -17,14 +13,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{419368C0-4ED2-4D66-8799-2A871AED0C7F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{419368C0-4ED2-4D66-8799-2A871AED0C7F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{419368C0-4ED2-4D66-8799-2A871AED0C7F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{419368C0-4ED2-4D66-8799-2A871AED0C7F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C6B58F00-7E4F-41C0-952E-CACE38E5FB4D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C6B58F00-7E4F-41C0-952E-CACE38E5FB4D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C6B58F00-7E4F-41C0-952E-CACE38E5FB4D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C6B58F00-7E4F-41C0-952E-CACE38E5FB4D}.Release|Any CPU.Build.0 = Release|Any CPU
 		{AE8ED347-A1DE-4BA8-9F16-70619E7DE668}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{AE8ED347-A1DE-4BA8-9F16-70619E7DE668}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AE8ED347-A1DE-4BA8-9F16-70619E7DE668}.Release|Any CPU.ActiveCfg = Release|Any CPU
