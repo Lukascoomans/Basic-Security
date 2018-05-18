@@ -40,6 +40,7 @@ namespace Encryption.Client
         private void SendButton_Click(object sender, RoutedEventArgs e)
         {
             chat.Invoke<String>("SendMessage", InputBox.Text);
+            InputBox.Text = "";
         }
     }
 }
