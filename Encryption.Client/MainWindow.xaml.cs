@@ -119,7 +119,7 @@ namespace Encryption.Client
                 }
             }
 
-           ZipFile.CreateFromDirectory("C:\\temp", "C:\\temp\\toSend.zip");
+            ZipFile.CreateFromDirectory("C:\\temp", "C:\\temp\\toSend.zip");
 
             byte[] zipBytes = File.ReadAllBytes("C:\\temp\\toSend.zip");
             chat.Invoke<Byte[]>("SendMessage", zipBytes);
