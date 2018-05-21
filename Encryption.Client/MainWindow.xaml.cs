@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.IO.Compression;
+using System.Linq;
 using System.Security.Cryptography;
 using System.Windows;
 using encryption;
@@ -65,16 +66,22 @@ namespace Encryption.Client
             connection.Start().Wait();
         }
 
-        private void DecryptNewMessage(byte[] msg)
+        private void DecryptNewMessage(string msg)
         {
             var dirPath = "C:\\temp\\files";
-            var pathFile1 = "C:\\temp\\file_1.txt";
-            var pathFile2 = "C:\\temp\\file_2.txt";
+            var pathFile1 = "C:\\temp\\files\\file_1.txt";
+            var pathFile2 = "C:\\temp\\files\\file_2.txt";
 
-            
+            String[] strings = msg.Split(',');
+            Byte[] bytes = new byte[strings.Length];
 
-            File.WriteAllBytes("C:\\temp\\zips\\toSend.zip", msg);
-            ZipFile.ExtractToDirectory("C:\\temp\\zipstoSend.zip", dirPath);
+            for (int i = 0; i < strings.Length; i++)
+            {
+                bytes[i] = Convert.ToByte(strings[i]);
+            }
+
+            File.WriteAllBytes("C:\\temp\\zips\\toSend.zip", bytes);
+            ZipFile.ExtractToDirectory("C:\\temp\\zips\\toSend.zip", dirPath);
 
             Byte[] encryptedText;
             Byte[] key;
@@ -97,21 +104,24 @@ namespace Encryption.Client
                    key[a] = (byte)chars[a];
                 }
             }
-
             string originalMessage = "Implement Encryption!";
-            MessagesBox.Items.Add(originalMessage);
+            MessagesBox.Items.Add("Other person: " + originalMessage);
+
+            File.Delete(pathFile1);
+            File.Delete(pathFile2);
+            File.Delete("C:\\temp\\zips\\toSend.zip");
         }
 
         private void SendButton_Click(object sender, RoutedEventArgs e)
         {
             String originalText = InputBox.Text;
-            MessagesBox.Items.Add(originalText);
+            MessagesBox.Items.Add("You: " + originalText);
 
             byte[] key;
             byte[] IV;
 
             var pathFile1 = "C:\\temp\\files\\file_1.txt";
-            var pathFile2 = "C:\\temp\\files\\file_1.txt";
+            var pathFile2 = "C:\\temp\\files\\file_2.txt";
 
             using (RijndaelManaged myRijndael = new RijndaelManaged())
             {
@@ -144,7 +154,16 @@ namespace Encryption.Client
             ZipFile.CreateFromDirectory("C:\\temp\\files", "C:\\temp\\zips\\toSend.zip");
 
             byte[] zipBytes = File.ReadAllBytes("C:\\temp\\zips\\toSend.zip");
-            chat.Invoke<Byte[]>("SendMessage", zipBytes);
+
+            string text = "";
+
+            foreach (byte number in zipBytes)
+            {
+                text = text + number.ToString() + ",";
+            }
+
+            text = text.Trim(',');
+            chat.Invoke<string>("SendMessage", text);
             InputBox.Text = "";
 
             File.Delete(pathFile1);

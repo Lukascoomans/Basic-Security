@@ -69,3 +69,4 @@ C:\Users\11600838\Documents\GitHub\Security\Encryption.Server\obj\Debug\Encrypti
 C:\Users\11600838\Documents\GitHub\Security\Encryption.Server\obj\Debug\Encryption.Server.csproj.CopyComplete
 C:\Users\11600838\Documents\GitHub\Security\Encryption.Server\obj\Debug\Encryption.Server.dll
 C:\Users\11600838\Documents\GitHub\Security\Encryption.Server\obj\Debug\Encryption.Server.pdb
+C:\Users\11600838\Documents\GitHub\Security\Encryption.Server\obj\Debug\Encryption.Server.csprojAssemblyReference.cache
