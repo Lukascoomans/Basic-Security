@@ -147,6 +147,11 @@ namespace Encryption.Client
                     {
                          sw.Write(key[i]); //zou nog geëncrypteerd moeten worden
                     }
+                    sw.Write("\n");
+                    for (int i = 0; i < encrypted.Length; i++)
+                    {
+                        sw.Write(IV[i]); //zou nog geëncrypteerd moeten worden
+                    }
                     sw.Close();
                 }
             }
