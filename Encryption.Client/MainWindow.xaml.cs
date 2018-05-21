@@ -20,14 +20,32 @@ namespace Encryption.Client
             {
                 Directory.CreateDirectory("C:\\temp");
             }
-
-            DirectoryInfo di = new DirectoryInfo("C:\\temp");
+            if (!Directory.Exists("C:\\temp\\files"))
+            {
+                Directory.CreateDirectory("C:\\temp\\files");
+            }
+            if (!Directory.Exists("C:\\temp\\zips"))
+            {
+                Directory.CreateDirectory("C:\\temp\\zips");
+            }
+            
+            DirectoryInfo di = new DirectoryInfo("C:\\temp\\zips");
 
             foreach (FileInfo file in di.GetFiles())
             {
                 file.Delete();
             }
             foreach (DirectoryInfo dir in di.GetDirectories())
+            {
+                dir.Delete(true);
+            }
+            DirectoryInfo directory = new DirectoryInfo("C:\\temp\\files");
+
+            foreach (FileInfo file in directory.GetFiles())
+            {
+                file.Delete();
+            }
+            foreach (DirectoryInfo dir in directory.GetDirectories())
             {
                 dir.Delete(true);
             }
@@ -38,21 +56,25 @@ namespace Encryption.Client
             var connection = new HubConnection("http://localhost:24127/");
             chat = connection.CreateHubProxy("chat");
 
-            chat.On("newMessage", msg => { this.Dispatcher.Invoke(() => { DecryptNewMessage(msg); }); });
+            chat.On("newMessage", message => { this.Dispatcher.Invoke(() =>
+            {
+                var test = message;
+                DecryptNewMessage(test);
+            }); });
 
             connection.Start().Wait();
         }
 
-        private void DecryptNewMessage(byte[] message)
+        private void DecryptNewMessage(byte[] msg)
         {
-            var dirPath = "C:\\temp";
+            var dirPath = "C:\\temp\\files";
             var pathFile1 = "C:\\temp\\file_1.txt";
             var pathFile2 = "C:\\temp\\file_2.txt";
 
             
 
-            File.WriteAllBytes(dirPath + "\\toSend.zip", message);
-            ZipFile.ExtractToDirectory("C:\\temp\\toSend.zip", dirPath);
+            File.WriteAllBytes("C:\\temp\\zips\\toSend.zip", msg);
+            ZipFile.ExtractToDirectory("C:\\temp\\zipstoSend.zip", dirPath);
 
             Byte[] encryptedText;
             Byte[] key;
@@ -88,8 +110,8 @@ namespace Encryption.Client
             byte[] key;
             byte[] IV;
 
-            var pathFile1 = "C:\\temp\\file_1.txt";
-            var pathFile2 = "C:\\temp\\file_1.txt";
+            var pathFile1 = "C:\\temp\\files\\file_1.txt";
+            var pathFile2 = "C:\\temp\\files\\file_1.txt";
 
             using (RijndaelManaged myRijndael = new RijndaelManaged())
             {
@@ -119,15 +141,15 @@ namespace Encryption.Client
                 }
             }
 
-            ZipFile.CreateFromDirectory("C:\\temp", "C:\\temp\\toSend.zip");
+            ZipFile.CreateFromDirectory("C:\\temp\\files", "C:\\temp\\zips\\toSend.zip");
 
-            byte[] zipBytes = File.ReadAllBytes("C:\\temp\\toSend.zip");
+            byte[] zipBytes = File.ReadAllBytes("C:\\temp\\zips\\toSend.zip");
             chat.Invoke<Byte[]>("SendMessage", zipBytes);
             InputBox.Text = "";
 
             File.Delete(pathFile1);
             File.Delete(pathFile2);
-            File.Delete("C:\\temp\\toSend.zip");
+            File.Delete("C:\\temp\\zips\\toSend.zip");
         }
     }
 }
