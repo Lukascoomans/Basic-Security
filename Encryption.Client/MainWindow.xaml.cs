@@ -15,6 +15,11 @@ namespace Encryption.Client
         public MainWindow()
         {
             InitializeComponent();
+
+            if ( ! Directory.Exists("C:\\temp"))
+            {
+                Directory.CreateDirectory("C:\\temp");
+            }
         }
 
         private void ConnectButton_Click(object sender, RoutedEventArgs e)
@@ -32,6 +37,17 @@ namespace Encryption.Client
             var dirPath = "C:\\temp";
             var pathFile1 = "C:\\temp\\file_1.txt";
             var pathFile2 = "C:\\temp\\file_2.txt";
+
+            DirectoryInfo di = new DirectoryInfo(dirPath);
+
+            foreach (FileInfo file in di.GetFiles())
+            {
+                file.Delete();
+            }
+            foreach (DirectoryInfo dir in di.GetDirectories())
+            {
+                dir.Delete(true);
+            }
 
             File.WriteAllBytes(dirPath + "\\toSend.zip", message);
             ZipFile.ExtractToDirectory("C:\\temp\\toSend.zip", dirPath);
