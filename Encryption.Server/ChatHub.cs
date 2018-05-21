@@ -10,7 +10,7 @@ namespace Encryption.Server
     [HubName("chat")]
     public class ChatHub : Hub
     {
-        public void SendMessage(String message)
+        public void SendMessage(byte[] message)
         {
             Clients.All.newMessage(message);
         }
