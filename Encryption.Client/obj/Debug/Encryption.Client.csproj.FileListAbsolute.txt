@@ -5,7 +5,6 @@ C:\Users\11600838\Documents\GitHub\Security\Encryption.Client\bin\Debug\Microsof
 C:\Users\11600838\Documents\GitHub\Security\Encryption.Client\bin\Debug\Newtonsoft.Json.dll
 C:\Users\11600838\Documents\GitHub\Security\Encryption.Client\bin\Debug\Microsoft.AspNet.SignalR.Client.xml
 C:\Users\11600838\Documents\GitHub\Security\Encryption.Client\bin\Debug\Newtonsoft.Json.xml
-C:\Users\11600838\Documents\GitHub\Security\Encryption.Client\obj\Debug\Encryption.Client.csprojAssemblyReference.cache
 C:\Users\11600838\Documents\GitHub\Security\Encryption.Client\obj\Debug\MainWindow.g.cs
 C:\Users\11600838\Documents\GitHub\Security\Encryption.Client\obj\Debug\App.g.cs
 C:\Users\11600838\Documents\GitHub\Security\Encryption.Client\obj\Debug\Encryption.Client_MarkupCompile.cache

@@ -8,10 +8,8 @@ using System.Threading.Tasks;
 
 namespace encryption
 {
-    class AES
+    public class AES
     {
-
-        
         public static byte[] EncryptStringToBytes(string plainText, byte[] Key, byte[] IV)
         {
             // Check arguments. 
