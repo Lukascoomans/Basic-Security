@@ -107,6 +107,7 @@ namespace Encryption.Client
                     {
                         sw.Write(encrypted[i]);
                     }
+                    sw.Close();
                 }
                 using (StreamWriter sw = File.CreateText(pathFile2))
                 {
@@ -114,6 +115,7 @@ namespace Encryption.Client
                     {
                          sw.Write(key[i]); //zou nog geëncrypteerd moeten worden
                     }
+                    sw.Close();
                 }
             }
 
