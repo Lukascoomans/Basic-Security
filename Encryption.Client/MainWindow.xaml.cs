@@ -4,6 +4,7 @@ using System.IO.Compression;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Windows;
+using System.Windows.Media;
 using encryption;
 using Microsoft.AspNet.SignalR.Client;
 
@@ -71,7 +72,8 @@ namespace Encryption.Client
             _userName = UsernametextBox.Text;
 
             connection.Start().Wait();
-
+            ConnectionStatuslabel.Content = "Connected";
+            ConnectionStatuslabel.Foreground = new SolidColorBrush(Colors.Green);
         }
 
         private void DecryptNewMessage(string msg)
