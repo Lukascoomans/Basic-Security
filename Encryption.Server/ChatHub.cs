@@ -14,5 +14,10 @@ namespace Encryption.Server
         {
             Clients.Others.newMessage(message);
         }
+
+        public void SetUserName(string username)
+        {
+            Clients.Others.SetUsername(username);
+        }
     }
 }

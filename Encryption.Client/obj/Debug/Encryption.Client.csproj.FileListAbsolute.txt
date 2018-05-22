@@ -18,3 +18,4 @@ C:\Users\11600838\Documents\GitHub\Security\Encryption.Client\obj\Debug\Encrypti
 C:\Users\11600838\Documents\GitHub\Security\Encryption.Client\obj\Debug\Encryption.Client.exe
 C:\Users\11600838\Documents\GitHub\Security\Encryption.Client\obj\Debug\Encryption.Client.pdb
 C:\Users\11600838\Documents\GitHub\Security\Encryption.Client\bin\Debug\System.IO.Compression.dll
+C:\Users\11600838\Documents\GitHub\Security\Encryption.Client\obj\Debug\Encryption.Client.csprojAssemblyReference.cache

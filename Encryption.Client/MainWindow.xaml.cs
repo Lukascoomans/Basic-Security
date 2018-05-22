@@ -12,6 +12,9 @@ namespace Encryption.Client
     public partial class MainWindow : Window
     {
         private IHubProxy chat;
+        private static string _userName;
+        private static string _otherUser;
+        private static bool _hasSendUsername = false;
 
         public MainWindow()
         {
@@ -63,7 +66,12 @@ namespace Encryption.Client
                 DecryptNewMessage(test);
             }); });
 
+            chat.On("SetUserName", userName => { this.Dispatcher.Invoke(() => { _otherUser = userName; }); });
+
+            _userName = UsernametextBox.Text;
+
             connection.Start().Wait();
+
         }
 
         private void DecryptNewMessage(string msg)
@@ -95,7 +103,7 @@ namespace Encryption.Client
             }
 
             string originalMessage = AES.DecryptStringFromBytes(encryptedText, key, IV);
-            MessagesBox.Items.Add("Other person: " + originalMessage);
+            MessagesBox.Items.Add( _otherUser + ": " + originalMessage);
 
             File.Delete(pathFile1);
             File.Delete(pathFile2);
@@ -104,8 +112,14 @@ namespace Encryption.Client
 
         private void SendButton_Click(object sender, RoutedEventArgs e)
         {
+            if (! _hasSendUsername)
+            {
+                chat.Invoke<string>("SetUserName", _userName);
+                _hasSendUsername = true;
+            }
+
             String originalText = InputBox.Text;
-            MessagesBox.Items.Add("You: " + originalText);
+            MessagesBox.Items.Add(_userName + ": " + originalText);
 
             byte[] key;
             byte[] IV;
