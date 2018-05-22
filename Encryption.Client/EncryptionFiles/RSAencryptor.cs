@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace encryption
 {
-    class RSA
+    public class RSAencryptor
     {
         /*
         static void Main()

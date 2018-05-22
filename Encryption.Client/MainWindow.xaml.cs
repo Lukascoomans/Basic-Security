@@ -71,6 +71,21 @@ namespace Encryption.Client
 
             _userName = UsernametextBox.Text;
 
+
+            RSACryptoServiceProvider user = new RSACryptoServiceProvider();
+
+            var rsaParameters = user.ExportParameters(true);
+            var privatepath= "C:\\secret\\files\\privatekey.txt";
+
+            using (StreamWriter sw = File.CreateText(privatepath))
+            {
+                sw.WriteLine(ConvertArrayToString(rsaParameters.Modulus));
+                sw.WriteLine(ConvertArrayToString(rsaParameters.Exponent));
+                sw.WriteLine(ConvertArrayToString(rsaParameters.D));
+                sw.Close();
+            }
+
+
             connection.Start().Wait();
             ConnectionStatuslabel.Content = "Connected";
             ConnectionStatuslabel.Foreground = new SolidColorBrush(Colors.Green);
@@ -81,6 +96,7 @@ namespace Encryption.Client
             var dirPath = "C:\\temp\\files";
             var pathFile1 = "C:\\temp\\files\\file_1.txt";
             var pathFile2 = "C:\\temp\\files\\file_2.txt";
+            var pubickey = "C:\\secret\\files\\privatekey.txt";
 
             //recreate the zip and unzip it
             byte[] bytes = ConvertStringToArray(msg);
@@ -103,6 +119,26 @@ namespace Encryption.Client
                 string ivString = reader.ReadLine();
                 IV = ConvertStringToArray(ivString);
             }
+
+            RSACryptoServiceProvider user = new RSACryptoServiceProvider();
+            RSAParameters rsaParameters = new RSAParameters();
+
+            using (StreamReader reader = File.OpenText(pubickey))
+            {
+                
+
+                string modulus = reader.ReadLine();
+                rsaParameters.Modulus = ConvertStringToArray(modulus);
+                string exponent = reader.ReadLine();
+                rsaParameters.Exponent = ConvertStringToArray(exponent);
+                string d = reader.ReadLine();
+                rsaParameters.D = ConvertStringToArray(d);
+            }
+
+            user.ImportParameters(rsaParameters);
+
+            IV =RSAencryptor.RSADecrypt(IV, rsaParameters, false);
+            key =RSAencryptor.RSADecrypt(key, rsaParameters, false);
 
             string originalMessage = AES.DecryptStringFromBytes(encryptedText, key, IV);
             MessagesBox.Items.Add( _otherUser + ": " + originalMessage);
@@ -128,6 +164,7 @@ namespace Encryption.Client
 
             var pathFile1 = "C:\\temp\\files\\file_1.txt";
             var pathFile2 = "C:\\temp\\files\\file_2.txt";
+            var pubickey = "C:\\secret\\files\\privatekey.txt";
 
             using (RijndaelManaged myRijndael = new RijndaelManaged())
             {
@@ -139,6 +176,25 @@ namespace Encryption.Client
 
                 Byte[] encrypted = AES.EncryptStringToBytes(originalText, key, IV);
                 
+
+                RSACryptoServiceProvider user = new RSACryptoServiceProvider();
+                RSAParameters rsaParameters = new RSAParameters();
+
+                using (StreamReader reader = File.OpenText(pubickey))
+                {
+
+
+                    string modulus = reader.ReadLine();
+                    rsaParameters.Modulus = ConvertStringToArray(modulus);
+                    string exponent = reader.ReadLine();
+                    rsaParameters.Exponent = ConvertStringToArray(exponent);
+                }
+                user.ImportParameters(rsaParameters);
+
+                key = RSAencryptor.RSAEncrypt(key, rsaParameters, false);
+                IV = RSAencryptor.RSAEncrypt(IV, rsaParameters, false);
+
+
                 using (StreamWriter sw = File.CreateText(pathFile1))
                 {
                     sw.WriteLine(ConvertArrayToString(encrypted));
@@ -150,6 +206,9 @@ namespace Encryption.Client
                     sw.WriteLine(ConvertArrayToString(IV));
                     sw.Close();
                 }
+                
+
+
             }
 
             ZipFile.CreateFromDirectory("C:\\temp\\files", "C:\\temp\\zips\\toSend.zip");
