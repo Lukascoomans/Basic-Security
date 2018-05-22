@@ -72,39 +72,29 @@ namespace Encryption.Client
             var pathFile1 = "C:\\temp\\files\\file_1.txt";
             var pathFile2 = "C:\\temp\\files\\file_2.txt";
 
-            String[] strings = msg.Split(',');
-            Byte[] bytes = new byte[strings.Length];
-
-            for (int i = 0; i < strings.Length; i++)
-            {
-                bytes[i] = Convert.ToByte(strings[i]);
-            }
-
+            //recreate the zip and unzip it
+            byte[] bytes = ConvertStringToArray(msg);
             File.WriteAllBytes("C:\\temp\\zips\\toSend.zip", bytes);
             ZipFile.ExtractToDirectory("C:\\temp\\zips\\toSend.zip", dirPath);
 
             Byte[] encryptedText;
             Byte[] key;
+            Byte[] IV;
             
             using (StreamReader reader = File.OpenText(pathFile1))
             {
-                char[] chars = reader.ReadLine().ToCharArray();
-                encryptedText = new byte[chars.Length];
-                for (int a = 0; a < chars.Length; a++)
-                {
-                    encryptedText[a] = (byte) chars[a];
-                }
+                string encryptedMessageString = reader.ReadLine();
+                encryptedText = ConvertStringToArray(encryptedMessageString);
             }
             using (StreamReader reader = File.OpenText(pathFile2))
             {
-                char[] chars = reader.ReadLine().ToCharArray();
-                key = new byte[chars.Length];
-                for (int a = 0; a < chars.Length; a++)
-                {
-                   key[a] = (byte)chars[a];
-                }
+                string keyString = reader.ReadLine();
+                key = ConvertStringToArray(keyString);
+                string ivString = reader.ReadLine();
+                IV = ConvertStringToArray(ivString);
             }
-            string originalMessage = "Implement Encryption!";
+
+            string originalMessage = AES.DecryptStringFromBytes(encryptedText, key, IV);
             MessagesBox.Items.Add("Other person: " + originalMessage);
 
             File.Delete(pathFile1);
@@ -135,23 +125,13 @@ namespace Encryption.Client
                 
                 using (StreamWriter sw = File.CreateText(pathFile1))
                 {
-                    for (int i = 0; i < encrypted.Length; i++)
-                    {
-                        sw.Write(encrypted[i]);
-                    }
+                    sw.WriteLine(ConvertArrayToString(encrypted));
                     sw.Close();
                 }
                 using (StreamWriter sw = File.CreateText(pathFile2))
                 {
-                    for (int i = 0; i < encrypted.Length; i++)
-                    {
-                         sw.Write(key[i]); //zou nog geëncrypteerd moeten worden
-                    }
-                    sw.Write("\n");
-                    for (int i = 0; i < encrypted.Length; i++)
-                    {
-                        sw.Write(IV[i]); //zou nog geëncrypteerd moeten worden
-                    }
+                    sw.WriteLine(ConvertArrayToString(key));
+                    sw.WriteLine(ConvertArrayToString(IV));
                     sw.Close();
                 }
             }
@@ -160,20 +140,39 @@ namespace Encryption.Client
 
             byte[] zipBytes = File.ReadAllBytes("C:\\temp\\zips\\toSend.zip");
 
-            string text = "";
+            string text = ConvertArrayToString(zipBytes);
 
-            foreach (byte number in zipBytes)
-            {
-                text = text + number.ToString() + ",";
-            }
-
-            text = text.Trim(',');
             chat.Invoke<string>("SendMessage", text);
             InputBox.Text = "";
 
             File.Delete(pathFile1);
             File.Delete(pathFile2);
             File.Delete("C:\\temp\\zips\\toSend.zip");
+        }
+
+        private string ConvertArrayToString(Byte[] array)
+        {
+            string text = "";
+            foreach (byte number in array)
+            {
+                text = text + number + ",";
+            }
+
+            text = text.Trim(',');
+            return text;
+        }
+
+        private Byte[] ConvertStringToArray(String astring)
+        {
+            String[] strings = astring.Split(',');
+            Byte[] bytes = new byte[strings.Length];
+
+            for (int i = 0; i < strings.Length; i++)
+            {
+                bytes[i] = Convert.ToByte(strings[i]);
+            }
+
+            return bytes;
         }
     }
 }
