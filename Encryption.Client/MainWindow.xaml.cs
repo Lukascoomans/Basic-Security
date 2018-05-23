@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Drawing;
 using System.IO;
 using System.IO.Compression;
 using System.Linq;
@@ -6,7 +7,9 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Windows;
 using System.Windows.Media;
+using System.Windows.Media.Imaging;
 using encryption;
+using Encryption.Client.EncryptionFiles;
 using Microsoft.AspNet.SignalR.Client;
 
 namespace Encryption.Client
@@ -210,6 +213,25 @@ namespace Encryption.Client
 
             string originalMessage = AES.DecryptStringFromBytes(encryptedText, key, IV);
 
+            Bitmap image;
+
+            if (originalMessage.Substring(0, 4).Contains("img"))
+            {
+                image =ByteToImage(ConvertStringToArray(originalMessage.Substring(4)));
+                originalMessage = Steganografie.extractText(image);
+
+
+                MemoryStream ms = new MemoryStream();
+                image.Save(ms, System.Drawing.Imaging.ImageFormat.Png);
+                ms.Position = 0;
+                BitmapImage bi = new BitmapImage();
+                bi.BeginInit();
+                bi.StreamSource = ms;
+                bi.EndInit();
+
+                imagebox.Source = bi;
+            }
+
            
             byte[] hashedBytes;
             using (var sha256 = SHA256.Create())
@@ -240,8 +262,23 @@ namespace Encryption.Client
 
         private void SendButton_Click(object sender, RoutedEventArgs e)
         {
-            String originalText = InputBox.Text;
-            MessagesBox.Items.Add(_userName + ": " + originalText);
+            String originalText;
+            if (fileText.Text != "")
+            {
+                Bitmap img = new Bitmap(fileText.Text);
+
+                Steganografie.embedText(InputBox.Text,img);
+               originalText = "img;"+ConvertArrayToString(ImageToByte(img));
+                
+
+
+            }
+            else
+            {
+                originalText = InputBox.Text;
+            }
+
+            MessagesBox.Items.Add(_userName + ": " + InputBox.Text);
 
             byte[] key;
             byte[] IV;
@@ -339,6 +376,7 @@ namespace Encryption.Client
             File.Delete(pathFile3);
             File.Delete("C:\\temp\\zips\\toSend.zip");
             chat.Invoke<string>("SendMessage", text);
+            
         }
 
         private string ConvertArrayToString(Byte[] array)
@@ -364,6 +402,60 @@ namespace Encryption.Client
             }
 
             return bytes;
+        }
+
+        public static byte[] ImageToByte(Image img)
+        {
+            using (var stream = new MemoryStream())
+            {
+                img.Save(stream, System.Drawing.Imaging.ImageFormat.Png);
+                return stream.ToArray();
+            }
+        }
+
+        public static Bitmap ByteToImage(byte[] blob)
+        {
+            using (MemoryStream mStream = new MemoryStream())
+            {
+                mStream.Write(blob, 0, blob.Length);
+                mStream.Seek(0, SeekOrigin.Begin);
+
+                Bitmap bm = new Bitmap(mStream);
+                return bm;
+            }
+        }
+
+        
+
+
+        private void ChooseFileButton_Click(object sender, RoutedEventArgs e)
+        {
+            Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog();
+
+
+
+            // Set filter for file extension and default file extension 
+            dlg.DefaultExt = ".png";
+            dlg.Filter = "PNG Files (*.png)|*.png";
+
+
+
+            // Display OpenFileDialog by calling ShowDialog method 
+            Nullable<bool> result = dlg.ShowDialog();
+
+
+            // Get the selected file name and display in a TextBox 
+            if (result == true)
+            {
+                // Open document 
+                string filename = dlg.FileName;
+                fileText.Text = filename;
+
+                imagebox.Source= new BitmapImage(new Uri(filename, UriKind.RelativeOrAbsolute));
+            }
+
+
+
         }
     }
 }

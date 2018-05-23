@@ -7,14 +7,16 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid Background="DodgerBlue">
-        <ListBox x:Name="MessagesBox" HorizontalAlignment="Left" Height="246" Margin="63,53,0,0" VerticalAlignment="Top" Width="659"/>
+        <ListBox x:Name="MessagesBox" HorizontalAlignment="Left" Height="246" Margin="63,53,0,0" VerticalAlignment="Top" Width="346"/>
         <TextBox x:Name="InputBox" HorizontalAlignment="Left" Height="36" Margin="63,332,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="544"/>
         <Button x:Name="SendButton" Content="Send" HorizontalAlignment="Left" Margin="639,332,0,0" VerticalAlignment="Top" Width="83" Height="36" Click="SendButton_Click"/>
-        <Button x:Name="ConnectButton" Content="Connect" HorizontalAlignment="Left" Margin="182,5,0,0" VerticalAlignment="Top" Width="291" Height="28" Click="ConnectButton_Click"/>
-        <Button x:Name="ChooseFileButton" Content="Choose File" HorizontalAlignment="Left" Margin="639,10,0,0" VerticalAlignment="Top" Width="83" Height="28"/>
+        <Button x:Name="ConnectButton" Content="Connect" HorizontalAlignment="Left" Margin="182,5,0,0" VerticalAlignment="Top" Width="94" Height="28" Click="ConnectButton_Click"/>
+        <Button x:Name="ChooseFileButton" Content="Choose File" HorizontalAlignment="Left" Margin="431,5,0,0" VerticalAlignment="Top" Width="83" Height="28" Click="ChooseFileButton_Click"/>
         <TextBox x:Name="UsernametextBox" HorizontalAlignment="Left" Height="28" Margin="63,5,0,0" TextWrapping="Wrap" Text="Name" VerticalAlignment="Top" Width="102"/>
         <Label x:Name="label" Content="Label" HorizontalAlignment="Left" Margin="-90,332,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="ConnectionStatuslabel" Content="Not Conected" Foreground="Red" HorizontalAlignment="Left" Margin="498,7,0,0" VerticalAlignment="Top" Width="89"/>
+        <Label x:Name="ConnectionStatuslabel" Content="Not Conected" Foreground="Red" HorizontalAlignment="Left" Margin="299,7,0,0" VerticalAlignment="Top" Width="88"/>
+        <TextBox x:Name="fileText" HorizontalAlignment="Left" Height="28" Margin="537,5,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="185"/>
+        <Image x:Name="imagebox" HorizontalAlignment="Left" Height="246" Margin="444,53,0,0" VerticalAlignment="Top" Width="278" OpacityMask="Black"/>
 
     </Grid>
 </Window>
