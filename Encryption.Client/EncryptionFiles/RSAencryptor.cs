@@ -62,7 +62,6 @@ namespace encryption
                     //Import the RSA Key information. This only needs
                     //toinclude the public key information.
                     RSA.ImportParameters(RSAKeyInfo);
-                    Console.WriteLine(RSA.ToXmlString(false));
                     //Encrypt the passed byte array and specify OAEP padding.  
                     //OAEP padding is only available on Microsoft Windows XP or
                     //later.  
@@ -96,7 +95,6 @@ namespace encryption
                     //Import the RSA Key information. This needs
                     //to include the private key information.
                     RSA.ImportParameters(RSAKeyInfo);
-                    Console.WriteLine("PR"+RSA.ToXmlString(true));
 
                     //Decrypt the passed byte array and specify OAEP padding.  
                     //OAEP padding is only available on Microsoft Windows XP or
@@ -115,5 +113,53 @@ namespace encryption
             }
 
         }
+
+
+        public static byte[] HashAndSignBytes(byte[] DataToSign, RSAParameters Key)
+        {
+            try
+            {
+                // Create a new instance of RSACryptoServiceProvider using the 
+                // key from RSAParameters.  
+                RSACryptoServiceProvider RSAalg = new RSACryptoServiceProvider();
+
+                RSAalg.ImportParameters(Key);
+
+                // Hash and sign the data. Pass a new instance of SHA1CryptoServiceProvider
+                // to specify the use of SHA1 for hashing.
+                return RSAalg.SignData(DataToSign, new SHA1CryptoServiceProvider());
+            }
+            catch (CryptographicException e)
+            {
+                Console.WriteLine(e.Message);
+
+                return null;
+            }
+        }
+
+        public static bool VerifySignedHash(byte[] DataToVerify, byte[] SignedData, RSAParameters Key)
+        {
+            try
+            {
+                // Create a new instance of RSACryptoServiceProvider using the 
+                // key from RSAParameters.
+                RSACryptoServiceProvider RSAalg = new RSACryptoServiceProvider();
+
+                RSAalg.ImportParameters(Key);
+
+                // Verify the data using the signature.  Pass a new instance of SHA1CryptoServiceProvider
+                // to specify the use of SHA1 for hashing.
+                return RSAalg.VerifyData(DataToVerify, new SHA1CryptoServiceProvider(), SignedData);
+
+            }
+            catch (CryptographicException e)
+            {
+                Console.WriteLine(e.Message);
+
+                return false;
+            }
+        }
+
+
     }
 }

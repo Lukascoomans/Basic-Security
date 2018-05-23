@@ -19,5 +19,14 @@ namespace Encryption.Server
         {
             Clients.Others.SetUsername(username);
         }
+        public void namesConfig(string username)
+        {
+            Clients.Others.namesConfig(username);
+        }
+        public void callNames(string username)
+        {
+            Clients.Others.callNames(username);
+        }
+        
     }
 }

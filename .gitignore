@@ -8,6 +8,7 @@
 *.pdb
 *.dll.config
 *.cache
+*.vs
 *.suo
 # Include dlls if they’re in the NuGet packages directory
 !/packages/*/lib/*.dll
